@@ -1,6 +1,4 @@
 # 環境構築
-* /envrioment配下に設定済み環境ファイルをおいております。
-    * 最新のモノではありませんが、参考になれば幸いです。
 
 * PHP：7.1.3以上
 * フレームワーク：Laravel 5.8
@@ -36,7 +34,7 @@ https://www.apachefriends.org/jp/index.html
 VirtualBoxとVagrantを使います。
 
 * 仮想PCを立てる。
-    * vagrant box add laravel/homestead --provider virtualbox 
+* vagrant box add laravel/homestead --provider virtualbox
 
 * Homesteadの取得
 Homesteadを経由して、仮想PCにLaravel環境を構築
@@ -91,10 +89,6 @@ Dockerコンテナーをベースに、docker-composeでコンテナクラスタ
         * マウント設定 
             * APP_CODE_PATH_HOST ※ホストPC側のパス
             * APP_CODE_PATH_CONTAINER ※仮想ゲスト側のパス
-
-        * webサーバーのドキュメントルート：ここ重要です。仮想ゲストとホストのOSが違うので、設定ミスが多々。
-            * APACHE_DOCUMENT_ROOT=/var/www/html/アプリ名/public/
-
         * 各種ポートが被っていないか要確認です。
 
     * 主なサービス
@@ -102,17 +96,7 @@ Dockerコンテナーをベースに、docker-composeでコンテナクラスタ
         * apache2：アパッチ用のサーバー
             * エントリーポイント(/var/www/html/)とホスト側のlaravelが繋がっているか要確認です。
     
-    * コンテナーのビルド&起動
-        * docker-compose up -d --build workspace postgres php-fpm apache2 pgadmin
-    
-    * laravel作成
-        * workpaceコンテナにssh接続
-            * docker-compose exec workspace bash
-        * laravel作成
-            * cd /var/www/html
-            * composer global require hirak/prestissimo laravel/installer && composer create-project --prefer-dist laravel/laravel アプリ名
-        
-        
+    * 
 -----
 
 # アプリ作成
