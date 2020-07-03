@@ -111,8 +111,3 @@ Dockerコンテナーをベースに、docker-composeでコンテナクラスタ
         * laravel作成
             * cd /var/www/html
             * composer global require hirak/prestissimo laravel/installer && composer create-project --prefer-dist laravel/laravel アプリ名
-        
-        
------
-
-# アプリ作成
