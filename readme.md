@@ -74,6 +74,7 @@ Homesteadを経由して、仮想PCにLaravel環境を構築
 Dockerコンテナーをベースに、docker-composeでコンテナクラスタ環境を作ります。
 <details>
 <summary>詳細オープン</summary>
+
 * Docker for Windowを取得
     * https://docs.docker.com/docker-for-windows/install/
 
