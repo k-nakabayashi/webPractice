@@ -35,6 +35,8 @@ https://www.apachefriends.org/jp/index.html
 ## HomeStead
 VirtualBoxとVagrantを使います。
 
+<details>
+<summary>詳細オープン</summary>
 * 仮想PCを立てる。
     * vagrant box add laravel/homestead --provider virtualbox 
 
@@ -66,11 +68,12 @@ Homesteadを経由して、仮想PCにLaravel環境を構築
             * mapはドメイン名、toは仮想ゲスト側のエントリーポイント
         
         * データベース名を指定：databases
-
+</details>
 
 ## Laradoc (推奨)
 Dockerコンテナーをベースに、docker-composeでコンテナクラスタ環境を作ります。
-
+<details>
+<summary>詳細オープン</summary>
 * Docker for Windowを取得
     * https://docs.docker.com/docker-for-windows/install/
 
@@ -111,3 +114,4 @@ Dockerコンテナーをベースに、docker-composeでコンテナクラスタ
         * laravel作成
             * cd /var/www/html
             * composer global require hirak/prestissimo laravel/installer && composer create-project --prefer-dist laravel/laravel アプリ名
+</details>
