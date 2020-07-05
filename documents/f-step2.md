@@ -81,3 +81,10 @@
 
 
 ## ④バリーデーション実装
+
+###　下準備
+* https://readouble.com/laravel/5.8/ja/validation-php.html
+* config/app.php ※timezoneとlocaleを日本に設定します。
+
+### ビュー編集：見た目編集
+* resources/views/admin/post/create.blade.php：編集

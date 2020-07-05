@@ -11,6 +11,11 @@
 |
 */
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\PostController;
+
+use App\Post;
+use Illuminate\Database\Eloquent\Model;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -63,10 +68,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
             Route::get('home', 'HomeController@index')->name('home');
 
-
             //記事関連
             Route::post('posts/create', 'PostController@create')->name('posts.create');
-            Route::get('posts/myIndex', 'PostController@myIndex')->name('posts.myIndex');
+
+            Route::get('/posts/{post}/myIndex', 'PostController@myIndex')->name('posts.myIndex');
 
             Route::get('posts/create', function(){
                 return view('admin.post.create');

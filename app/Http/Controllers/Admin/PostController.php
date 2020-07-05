@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Post;
-use App\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Request as Request2;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {   
@@ -30,7 +29,7 @@ class PostController extends Controller
         $postList = Post::where("deleted_at", null)->get();
         return view('admin.post.index')->with('postList', $postList);
     }
-    
+
     public function myIndex()
     {
         $admin = Auth::user();
@@ -38,9 +37,8 @@ class PostController extends Controller
         return view('admin.post.index')->with('postList', $postList);
     }
 
-    public function confirm()
+    public function confirm(PostRequest $request)
     {
-        $request = app(Request::class);
         $data = $request->all();
         return view('admin.post.create.confirm')->with('data', $data);
     }
@@ -50,10 +48,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(PostRequest $request)
     {
         //データ取得
-        $request = app(Request::class);
         $data = $request->all();
         unset($data['_token']);
 
@@ -64,7 +61,7 @@ class PostController extends Controller
         
         //返却
         $postList = Post::where("deleted_at", null)->get();
-        return redirect()->route('admin.posts.index')->with('postList', $postList);
+        return redirect()->route('admin.posts.myIndex')->with('postList', $postList);
     }
 
     /**
@@ -87,6 +84,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        $post = $post;
     }
 
     /**

@@ -18,11 +18,21 @@
                         @csrf
                         <div class="form-group">
                             <label>記事タイトル</label>
-                            <input class="form-control" type="text" name="subject">
+                            <input class="form-control @error('subject') is-invalid @enderror" type="text" name="subject">
+                            @error('subject')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>記事内容</label>
-                            <textarea class="form-control" name="detail"></textarea>
+                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail"></textarea>
+                            @error('detail')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>                 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary" id="js-submit">内容を確認する</button>
