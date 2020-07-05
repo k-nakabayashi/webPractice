@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container" id="post-index" class="admin">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">投稿記事一覧</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,19 +14,32 @@
                         </div>
                     @endif
 
-                    You are logged in!
                     <div>
-                        <a href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
+                        <a class="btn btn-primary btn-lg" href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
                     </div>
-
-                    <div>
+                    <div class="row">
+                        
                         @foreach ($postList as $post)
-                        <div>
-                            <a href="#">{{$post['subject']}}</a>
-                            <p>{{$post['detail']}}</p>
+                        <div class="col-md-4">
+                            <div class="card p-0 mt-4">
+                                <div class="c-PostList">
+                                    <p class="card-header"><a class="a-Link" href="#">{{$post->subject}}</a></p>
+                                    <div class="card-body">
+                                        <p class="card-text a-Txt">{{$post->detail}}</p>
+
+                                        <div class="u-btn-wrapper">
+                                            <a href="#" class="btn btn-primary mr-3">編集</a>
+                                            <a href="#" class="btn btn-secondary">削除</a>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         @endforeach
+                        
                     </div>
+
                 </div>
             </div>
         </div>

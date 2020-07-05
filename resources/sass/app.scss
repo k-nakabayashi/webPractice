@@ -6,3 +6,84 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+#post-index {
+    &.admin {
+
+    }
+}
+
+$area1: 24px;
+$area2: 40px;
+$area3: 80px;
+.u-Above1 {
+    > * {
+        margin-top: $area1;
+    }
+}
+.u-Above2 {
+    > * {
+        margin-top: $area2;
+    }
+}
+
+.u-Above3 {
+    > * {
+        margin-top: $area3;
+    }
+}
+
+.u-Below1 {
+    > * {
+        margin-bottom: $area1;
+    }
+}
+
+.u-Below2 {
+    > * {
+        margin-bottom: $area2;
+    }
+}
+
+.u-Below3 {
+    > * {
+        margin-bottom: $area3;
+    }
+}
+
+.c-PostList {
+    overflow: hidden;
+    .a-Link {
+        position: relative;
+        text-align: center;
+        display: inline-block;
+        &:after {
+            content: "";
+            display: inline-block;
+            background: #3490dc;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            height: 1px;
+            width: 100%;
+            transform: scaleX(0);
+            transition-property: transform;
+            transition-duration: .2s;
+        }
+        &:hover {
+            text-decoration: none;
+            &:after {
+               transform: scaleX(1);
+               transition-property: transform;
+               transition-duration: .2s;    
+            }
+        }
+    }
+    .a-Txt {
+        height: 60px;
+    }
+}
+

@@ -26,7 +26,7 @@ class PostController extends Controller
     public function index()
     {
 
-        $postList = Post::where("deleted_at", null)->get()->toArray();
+        $postList = Post::where("deleted_at", null)->get();
         return view('admin.post.index')->with('postList', $postList);
     }
 
@@ -55,8 +55,8 @@ class PostController extends Controller
         $result = $this->post->create($data);
         
         //返却
-        $postList = Post::where("deleted_at", null)->get()->toArray();
-        return view('admin.post.index')->with('postList', $postList);
+        $postList = Post::where("deleted_at", null)->get();
+        return redirect()->route('admin.posts.index')->with('postList', $postList);
     }
 
     /**
