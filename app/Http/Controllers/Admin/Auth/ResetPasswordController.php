@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\AdminGuardBroker;
 
 class ResetPasswordController extends Controller
 {
@@ -22,8 +21,10 @@ class ResetPasswordController extends Controller
     |
     */
 
-    use ResetsPasswords;
-
+    use ResetsPasswords, AdminGuardBroker {
+        AdminGuardBroker::broker insteadof ResetsPasswords;
+        AdminGuardBroker::guard insteadof ResetsPasswords;
+    }
     /**
      * Where to redirect users after resetting their password.
      *
@@ -49,18 +50,5 @@ class ResetPasswordController extends Controller
         );
     }
 
-    public function broker()
-    {
-        return Password::broker('admins');
-    }
 
-    /**
-     * Get the guard to be used during password reset.
-     *
-     * @return \Illuminate\Contracts\Auth\StatefulGuard
-     */
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
 }

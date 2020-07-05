@@ -18,6 +18,15 @@
                     <div>
                         <a href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
                     </div>
+
+                    <div>
+                        @foreach ($postList as $post)
+                        <div>
+                            <a href="#">{{$post['subject']}}</a>
+                            <p>{{$post['detail']}}</p>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

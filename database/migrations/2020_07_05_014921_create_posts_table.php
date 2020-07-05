@@ -15,6 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('admin_id')->require();
+            $table->string('subject')->require();
+            $table->text('detail')->require();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

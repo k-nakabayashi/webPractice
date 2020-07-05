@@ -16,13 +16,15 @@
 
                     <form action="{{ route('admin.posts.create') }}" method="POST" id="js-form">
                         @csrf
+                        <input type="hidden" name="subject" value="{{ $data['subject'] }}">
+                        <input type="hidden" name="detail" value="{{ $data['detail'] }}">
                         <div class="form-group">
                             <label>記事タイトル</label>
-                            <input class="form-control" type="text" name="subject" value="{{ $data['subject'] }}" disabled>
+                            <p>{{ $data['subject'] }}</p>
                         </div>
                         <div class="form-group">
                             <label>記事内容</label>
-                            <textarea class="form-control" name="detail" disabled>{{ $data['detail'] }}</textarea>
+                            <p>{{ $data['detail'] }}</p>
                         </div>                 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary" id="js-submit">記事を投稿する</button>

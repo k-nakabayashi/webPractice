@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 //追加
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminGuardBroker;
 
 class LoginController extends Controller
 {
@@ -22,7 +22,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, AdminGuardBroker {
+        AdminGuardBroker::broker insteadof AuthenticatesUsers;
+        AdminGuardBroker::guard insteadof AuthenticatesUsers;
+    }
 
     /**
      * Where to redirect users after login.
@@ -45,11 +48,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('admin.auth.login'); 
-    }
-
-    protected function guard()
-    {
-        return Auth::guard('admin');
     }
 
     public function logout(Request $request)

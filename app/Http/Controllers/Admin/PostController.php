@@ -4,10 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Post;
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Request as Request2;
 
 class PostController extends Controller
-{
+{   
+    use AdminGuardBroker;
+    private $post;
+
+    public function __construct(Post $post)
+    {
+        $this->post = $post;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +25,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-        return view('admin.post.index');
+
+        $postList = Post::where("deleted_at", null)->get()->toArray();
+        return view('admin.post.index')->with('postList', $postList);
     }
 
     public function confirm()
@@ -31,19 +42,20 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //データ取得
         $request = app(Request::class);
         $data = $request->all();
+        unset($data['_token']);
 
         //作成
-        $post = new Post();
-        $post->subject = $data['subject'];
-        $post->detail = $data['detail'];
-        $post->save();
+        $id = Auth::id();
+        $data['admin_id'] = $id;
+        $result = $this->post->create($data);
         
-        $postList = Post::where("deleted_at", null)->get();
+        //返却
+        $postList = Post::where("deleted_at", null)->get()->toArray();
         return view('admin.post.index')->with('postList', $postList);
     }
 

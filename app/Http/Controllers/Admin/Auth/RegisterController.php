@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 
 //追加
 use App\Admin;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminGuardBroker;
 
 class RegisterController extends Controller
 {
@@ -25,8 +25,10 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
-
+    use RegistersUsers, AdminGuardBroker {
+        AdminGuardBroker::broker insteadof RegistersUsers;
+        AdminGuardBroker::guard insteadof RegistersUsers;
+    }
     /**
      * Where to redirect users after registration.
      *
@@ -79,8 +81,5 @@ class RegisterController extends Controller
     {
         return view('admin.auth.register');
     }
-    protected function guard()
-    {
-        return Auth::guard('admin');
-    }
+
 }
