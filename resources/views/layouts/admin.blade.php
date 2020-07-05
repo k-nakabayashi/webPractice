@@ -84,5 +84,14 @@
             @yield('content')
         </main>
     </div>
+
+<script>
+    function confirmForm(event) {
+        event.preventDefault();
+        let $form = document.getElementById('js-form');
+        
+    }
+</script>
+
 </body>
 </html>

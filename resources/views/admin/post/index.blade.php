@@ -15,6 +15,9 @@
                     @endif
 
                     You are logged in!
+                    <div>
+                        <a href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
+                    </div>
                 </div>
             </div>
         </div>

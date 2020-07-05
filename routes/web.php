@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('welcome');
@@ -56,13 +57,19 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
             Route::get('/', 'HomeController@index')->name('home');
             Route::get('home', 'HomeController@index')->name('home');
-            Route::resource('posts', 'PostController')->except([
-                'create'
-            ]);
-            
+
+
+            //記事関連
             Route::post('posts/create', 'PostController@create')->name('posts.create');
+
+            Route::get('posts/create', function(){
+                return view('admin.post.create');
+            })->name('posts.create.get');
+            
+            Route::post('posts/create/confirm', 'PostController@confirm')->name('posts.create.confirm');
+
+            Route::resource('posts', 'PostController')->except(['create']);
+        
         });
     });
 });
-
-

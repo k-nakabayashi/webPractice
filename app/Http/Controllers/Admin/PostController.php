@@ -19,6 +19,13 @@ class PostController extends Controller
         return view('admin.post.index');
     }
 
+    public function confirm()
+    {
+        $request = app(Request::class);
+        $data = $request->all();
+        return view('admin.post.create.confirm')->with('data', $data);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -26,8 +33,18 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
-        return view('admin.post.create');
+        //データ取得
+        $request = app(Request::class);
+        $data = $request->all();
+
+        //作成
+        $post = new Post();
+        $post->subject = $data['subject'];
+        $post->detail = $data['detail'];
+        $post->save();
+        
+        $postList = Post::where("deleted_at", null)->get();
+        return view('admin.post.index')->with('postList', $postList);
     }
 
     /**
