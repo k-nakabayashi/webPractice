@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -15,8 +15,6 @@
                     @endif
 
                     You are logged in!
-                    
-
                 </div>
             </div>
         </div>

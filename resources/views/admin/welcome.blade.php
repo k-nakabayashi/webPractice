@@ -79,7 +79,7 @@
                             <a href="{{ route('admin.register') }}">Register</a>
                         @endif
                     @endauth
-                    <a href="{{ route('posts.index') }}">Posts</a>
+                    <a href="{{ route('admin.posts.index') }}">Posts</a>
                 </div>
             @endif
 

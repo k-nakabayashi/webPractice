@@ -19,40 +19,50 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('posts', 'PostController')->only([
-    'index'
+    'index','show'
 ]);;
 
-//ログインしていない状態
-Route::group(['prefix' => 'admin', 'middleware' => ['guest:admin']], function() {
+//Admin用
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+
+    //ログインしていない状態
+    Route::group(['middleware' => ['guest:admin'], 'namespace' => 'Admin\Auth'], function() {
+        Route::get('login', 'LoginController@showLoginForm')->name('login');
     
-    Route::get('/', function () {
-        return view('admin.welcome');
+        Route::get('/', function () {
+            return view('welcome');
+        });
+
+        Route::post('login', 'LoginController@login')->name('login');
+
+        Route::get('register', 'RegisterController@showRegisterForm')->name('register');
+        Route::post('register', 'RegisterController@register')->name('register');
+
+        Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        
+        Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'ResetPasswordController@reset')->name('password.update');
     });
 
-    Route::get('login', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
-    Route::post('login', 'Admin\Auth\LoginController@login')->name('admin.login');
+    //ログインしている状態
+    Route::group(['middleware' => ['auth:admin']], function() {
 
-    Route::get('register', 'Admin\Auth\RegisterController@showRegisterForm')->name('admin.register');
-    Route::post('register', 'Admin\Auth\RegisterController@register')->name('admin.register');
+        Route::group(['namespace' => 'Admin\Auth'], function() {
+            Route::post('logout', 'LoginController@logout')->name('logout');
+        });
 
-    Route::get('password/reset', 'Admin\Auth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
-    Route::post('password/email', 'Admin\Auth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
-    
-    Route::get('password/reset/{token}', 'Admin\Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
-    Route::post('password/reset', 'Admin\Auth\ResetPasswordController@reset')->name('admin.password.update');
+        Route::group(['namespace' => 'Admin'], function() {
+
+            Route::get('/', 'HomeController@index')->name('home');
+            Route::get('home', 'HomeController@index')->name('home');
+            Route::resource('posts', 'PostController')->except([
+                'create'
+            ]);
+            
+            Route::post('posts/create', 'PostController@create')->name('posts.create');
+        });
+    });
 });
-
-//ログインしている状態
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function(){
-    Route::get('/', 'Admin\HomeController@index')->name('admin.home');
-    Route::get('home', 'Admin\HomeController@index')->name('admin.home');
-
-    Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
-
-    Route::resource('posts', 'PostController')->except([
-        'index'
-    ]);;
-});
-
 
 

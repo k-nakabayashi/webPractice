@@ -14,17 +14,20 @@
     * resources/views/admin/home.blade.phpをコピペする
 
 * リンクを作る
-    * authとadminのviewsディレクトリに追記
-        * <a href="{{ route('posts.index') }}">Posts</a>
+    * post投稿へのリンクを作成：authとadminのviewsディレクトリに追記
+        * auth:<a href="{{ route('posts.index') }}">Posts</a>
+        * admin:<a href="{{ route('admin.posts.index') }}">Posts</a>
 
 ### ルーティング作成
 * routes/web.php
-    * Route::resource('posts', 'PostController')->only(['index']);
-
+    * Route::resource('posts', 'PostController')->only(['index', 'show']);
     * adminログイン時のグループに追記
-        * Route::resource('posts', 'PostController')->only(['index']);
+        * web.phpをご参照ください。
+        * ログインと未ログインのグループを整理
+            * nameに「admin.」を共通で付与
+            * コントローラーのnamespaceを指定
 
-### コントローラー作成と変種
-* app\Http\Controllers\PostController.php
-    * メソッド編集：indexとcreateをreturn viewする
+### コントローラー作成と編集
+* app\Http\Controllers\Admin\PostController.php
+    * メソッド編集：まずindexとcreateをreturn viewする
 

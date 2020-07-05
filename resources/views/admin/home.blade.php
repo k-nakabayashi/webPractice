@@ -16,7 +16,7 @@
 
                     You are logged in!
                     <div>
-                        <a href="{{ route('posts.create') }}">Posts</a>
+                        <a href="{{ route('admin.posts.index') }}">Posts</a>
                     </div>
                 </div>
             </div>

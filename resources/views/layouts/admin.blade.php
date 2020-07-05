@@ -73,7 +73,7 @@
                             @endif
                         @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">{{ __('Post') }}</a>
+                            <a class="nav-link" href="{{ route('admin.posts.index') }}">{{ __('Post') }}</a>
                         </li>
                     </ul>
                 </div>
