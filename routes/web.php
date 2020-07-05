@@ -18,12 +18,14 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-
+Route::resource('posts', 'PostController')->only([
+    'index'
+]);;
 
 //ログインしていない状態
 Route::group(['prefix' => 'admin', 'middleware' => ['guest:admin']], function() {
     
-    Route::get('/admin', function () {
+    Route::get('/', function () {
         return view('admin.welcome');
     });
 
@@ -43,10 +45,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['guest:admin']], function() 
 //ログインしている状態
 Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin']], function(){
     Route::get('/', 'Admin\HomeController@index')->name('admin.home');
-    Route::get('/admin', 'Admin\HomeController@index')->name('admin.home');
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 
     Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+
+    Route::resource('posts', 'PostController')->except([
+        'index'
+    ]);;
 });
 
 

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -15,9 +15,6 @@
                     @endif
 
                     You are logged in!
-                    <div>
-                        <a href="{{ route('posts.create') }}">Posts</a>
-                    </div>
                 </div>
             </div>
         </div>

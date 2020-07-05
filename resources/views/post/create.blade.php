@@ -15,9 +15,8 @@
                     @endif
 
                     You are logged in!
-                    <div>
-                        <a href="{{ route('posts.create') }}">Posts</a>
-                    </div>
+                    
+
                 </div>
             </div>
         </div>
