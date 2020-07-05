@@ -10928,6 +10928,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font-size: 1.4rem;
+}
+
 .navbar {
   position: fixed;
   z-index: 10000000;
@@ -10942,6 +10946,17 @@ a.text-dark:focus {
   position: relative;
   z-index: 0;
   margin-top: 55px;
+}
+
+#post-create.admin .u-errorWrapper {
+  position: relative;
+}
+
+#post-create.admin .u-errorWrapper .a-Error {
+  position: absolute;
+  display: inline-block;
+  width: auto;
+  right: 0;
 }
 
 .u-Above1 > * {

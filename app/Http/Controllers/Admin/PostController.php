@@ -61,7 +61,7 @@ class PostController extends Controller
         
         //返却
         $postList = Post::where("deleted_at", null)->get();
-        return redirect()->route('admin.posts.myIndex')->with('postList', $postList);
+        return redirect()->route('admin.posts.index')->with('postList', $postList);
     }
 
     /**

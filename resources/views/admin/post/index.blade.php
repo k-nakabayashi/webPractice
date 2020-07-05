@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container" id="post-index" class="admin">
+<div class="container admin" id="post-index">
     <div class="row justify-content-center">
         <div class="col-md">
             <div class="card">

@@ -23,7 +23,7 @@
                             <p>{{ $data['subject'] }}</p>
                         </div>
                         <div class="form-group">
-                            <label>記事内容</label>
+                            <label>記事本文</label>
                             <p>{{ $data['detail'] }}</p>
                         </div>                 
                         <div class="form-group text-right">

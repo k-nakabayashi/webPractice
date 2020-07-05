@@ -143,6 +143,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'email '=> 'メールアドレス',
+        'password' => 'パスワード',
+        'subject' => '記事タイトル',
+        'detail' => '記事本文',
+    ],
 
 ];

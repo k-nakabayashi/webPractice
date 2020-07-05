@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="container admin" id="post-create">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -17,22 +17,26 @@
                     <form action="{{ route('admin.posts.create.confirm') }}" method="POST" id="js-form">
                         @csrf
                         <div class="form-group">
-                            <label>記事タイトル</label>
-                            <input class="form-control @error('subject') is-invalid @enderror" type="text" name="subject">
-                            @error('subject')
-                                <span class="invalid-feedback" role="alert">
+                            <div class="u-errorWrapper">
+                                 <label class="@error('subject')is-invalid @enderror">記事タイトル</label>
+                                @error('subject')
+                                <span class="a-Error invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                                @enderror
+                            </div>   
+                            <input class="form-control @error('subject') is-invalid @enderror" type="text" name="subject">
                         </div>
                         <div class="form-group">
-                            <label>記事内容</label>
-                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail"></textarea>
-                            @error('detail')
-                                <span class="invalid-feedback" role="alert">
+                            <div class="u-errorWrapper">
+                                <label class="@error('detail') is-invalid @enderror">記事本文</label>
+                                @error('detail')
+                                <span class="a-Error invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
+                                @enderror
+                            </div>   
+                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail" rows="10"></textarea>
                         </div>                 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary" id="js-submit">内容を確認する</button>
