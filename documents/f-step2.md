@@ -84,7 +84,31 @@
 
 ###　下準備
 * https://readouble.com/laravel/5.8/ja/validation-php.html
-* config/app.php ※timezoneとlocaleを日本に設定します。
+    * config/app.php ※timezoneとlocaleを日本に設定します。
+* エラー表示のinputのnameを日本語化します。attributes配列に設定します。
+    * resources/lang/ja/validation.phpを編集
 
 ### ビュー編集：見た目編集
 * resources/views/admin/post/create.blade.php：編集
+
+###　実装
+* リクエストインスンスにバリデーションを当てる
+    * php artisan make:request PostRequest
+    * PostRequestのrulesメソッドにバリデーションルールを付与
+
+* コントローラーのアクションで呼び出し
+    * ルールとアクションの引数に設定することで、バリーデーションが実行されます。
+        * create(PostRequest $request)
+        * confirm(PostRequest $request)
+
+### 全角スペースのみでの投稿できる。これを阻止する ※難易度高めです。
+* カスタムバリデーション※全体で使えるようにするver
+    * バリデーションを記述
+        * php artisan make:provider ValidationProvider
+        * bootメソッドに追記
+        * config/app.phpのprovidersに追加※後ほど説明します。
+
+    * メッセージ指定
+        * resources/lang/ja/validation.phpを編集
+            * 'double_space'   => 'スペースは入力できません',
+* ついでに、

@@ -25,7 +25,7 @@
                                 </span>
                                 @enderror
                             </div>   
-                            <input class="form-control @error('subject') is-invalid @enderror" type="text" name="subject">
+                            <input class="form-control @error('subject') is-invalid @enderror" type="text" name="subject"　value="@if (!empty($data['subject'])) echo old($data['subject']); @endif">
                         </div>
                         <div class="form-group">
                             <div class="u-errorWrapper">
@@ -36,7 +36,7 @@
                                 </span>
                                 @enderror
                             </div>   
-                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail" rows="10"></textarea>
+                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail" rows="10">@if (!empty($data['detail'])) echo old($data['detail']); @endif</textarea>
                         </div>                 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary" id="js-submit">内容を確認する</button>
