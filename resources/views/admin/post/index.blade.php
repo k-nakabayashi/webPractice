@@ -15,7 +15,8 @@
                     @endif
 
                     <div>
-                        <a class="btn btn-primary btn-lg" href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
+                        <a class="btn btn-primary btn-lg mr-3" href="{{ route('admin.posts.create.get') }}">新しく記事を投稿する</a>
+                        <a class="btn btn-secondary btn-lg" href="{{ route('admin.posts.myIndex') }}">自分の投稿一覧</a>
                     </div>
                     <div class="row">
                         

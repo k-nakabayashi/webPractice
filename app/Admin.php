@@ -46,7 +46,7 @@ class Admin extends Authenticatable
 
     public function posts()
     {
-        $posts = $this->hasMany(Posts::class);
+        $posts = $this->hasMany(Post::class);
         return $posts;
     }
 }

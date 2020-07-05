@@ -13,6 +13,6 @@ class Post extends Model
     public function admin()
     {
         $admin = $this->belongsTo(Admin::class);
-        return $$admin;
+        return $admin;
     }
 }

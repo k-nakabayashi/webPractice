@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
 
             //記事関連
             Route::post('posts/create', 'PostController@create')->name('posts.create');
+            Route::get('posts/myIndex', 'PostController@myIndex')->name('posts.myIndex');
 
             Route::get('posts/create', function(){
                 return view('admin.post.create');
