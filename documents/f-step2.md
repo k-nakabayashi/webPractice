@@ -111,4 +111,5 @@
     * メッセージ指定
         * resources/lang/ja/validation.phpを編集
             * 'double_space'   => 'スペースは入力できません',
-* ついでに、
+
+* ついでに、確認画面から前の画面に戻る機能を実装

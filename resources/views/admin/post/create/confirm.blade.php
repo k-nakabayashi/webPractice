@@ -16,22 +16,30 @@
 
                     <form action="{{ route('admin.posts.create') }}" method="POST" id="js-form">
                         @csrf
-                        <input type="hidden" name="subject" value="{{ $data['subject'] }}">
-                        <input type="hidden" name="detail" value="{{ $data['detail'] }}">
+                        <input type="hidden" name="subject" value="{{ old('subject') }}">
+                        <input type="hidden" name="detail" value="{{ old('detail') }}">
                         <div class="form-group">
                             <label>記事タイトル</label>
-                            <p>{{ $data['subject'] }}</p>
+                            <p>{{ old('subject') }}</p>
                         </div>
                         <div class="form-group">
                             <label>記事本文</label>
-                            <p>{{ $data['detail'] }}</p>
+                            <p>{{ old('detail') }}</p>
                         </div>                 
                         <div class="form-group text-right">
+
                             <button type="submit" class="btn btn-primary" id="js-submit">記事を投稿する</button>
                         </div>
 
                     </form>
-
+                    <form action="{{ route('admin.posts.create.back') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="subject" value="{{ old('subject') }}">
+                        <input type="hidden" name="detail" value="{{ old('detail') }}">
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-secondary" id="js-submit">修正する</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

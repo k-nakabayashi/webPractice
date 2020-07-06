@@ -35,14 +35,24 @@ class PostController extends Controller
         $admin = Auth::user();
         $postList = $admin->posts()->where(["deleted_at"=>null])->get();
         return view('admin.post.index')->with('postList', $postList);
+        
     }
 
     public function confirm(PostRequest $request)
     {
-        $data = $request->all();
-        return view('admin.post.create.confirm')->with('data', $data);
+        
+        $request->flash();
+        return view('admin.post.create.confirm');
+        // return view('admin.post.create.confirm')->withInput();
     }
 
+    public function back(Request $request)
+    {
+
+        $request->flash();
+        return redirect()->route('admin.posts.create');  
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -59,9 +69,7 @@ class PostController extends Controller
         $data['admin_id'] = $id;
         $result = $this->post->create($data);
         
-        //返却
-        $postList = Post::where("deleted_at", null)->get();
-        return redirect()->route('admin.posts.index')->with('postList', $postList);
+        return redirect()->route('admin.posts.index');
     }
 
     /**

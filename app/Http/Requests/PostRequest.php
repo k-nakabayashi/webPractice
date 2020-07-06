@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Contracts\Validation\Validator;
 class PostRequest extends FormRequest
 {
     /**
@@ -28,4 +28,7 @@ class PostRequest extends FormRequest
             'detail' => 'required|string|double_space',
         ];
     }
+
+
+
 }

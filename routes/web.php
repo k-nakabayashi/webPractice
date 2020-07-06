@@ -78,6 +78,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
             })->name('posts.create.get');
             
             Route::post('posts/create/confirm', 'PostController@confirm')->name('posts.create.confirm');
+            Route::post('posts/back', 'PostController@back')->name('posts.create.back');
+            // Route::get('posts/{post}/backForm?{data}', function ($data) {
+            //     $ctrl = app(PostController::class);
+            //     $response = $ctrl->backForm($data);
+            //     return $response;
+            // })->name('posts.backForm');
+
+            Route::get('posts/back', 'PostController@backForm')->name('posts.backForm');
 
             Route::resource('posts', 'PostController')->except(['create']);
         
