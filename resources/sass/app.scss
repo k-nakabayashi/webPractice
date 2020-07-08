@@ -8,7 +8,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 .navbar {
     position: fixed;
@@ -50,23 +50,30 @@ body {
     }
 }
 
-$area1: 24px;
-$area2: 40px;
-$area3: 80px;
+$area1: 8px;
+$area2: 24px;
+$area3: 40px;
+$area4: 80px;
 .u-Above1 {
     > * {
         margin-top: $area1;
     }
 }
+
 .u-Above2 {
     > * {
         margin-top: $area2;
     }
 }
-
 .u-Above3 {
     > * {
         margin-top: $area3;
+    }
+}
+
+.u-Above4 {
+    > * {
+        margin-top: $area4;
     }
 }
 
@@ -87,12 +94,16 @@ $area3: 80px;
         margin-bottom: $area3;
     }
 }
-
+.u-Below4 {
+    > * {
+        margin-bottom: $area4;
+    }
+}
 
 
 .c-PostList {
     overflow: hidden;
-    .a-Link {
+    .ep-Link {
         position: relative;
         text-align: center;
         display: inline-block;
@@ -108,20 +119,40 @@ $area3: 80px;
             height: 1px;
             width: 100%;
             transform: scaleX(0);
-            transition-property: transform;
+            transition-property: transform opacity;
             transition-duration: .2s;
+            opacity: 0;
         }
         &:hover {
             text-decoration: none;
             &:after {
                transform: scaleX(1);
-               transition-property: transform;
-               transition-duration: .2s;    
+               transition-property: transform opacity;
+               transition-duration: .2s;
+               opacity: 1;
             }
         }
     }
-    .a-Txt {
+    .a-Title, .a-Txt {
+
+    }
+    .a-Title {
         height: 60px;
+        > * {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow-x: hidden;
+        }
+    }
+    .a-Txt {
+        font-size: 0.7em;
+        height: 60px;
+        > * {
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
     }
 }
-

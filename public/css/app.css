@@ -10929,7 +10929,7 @@ a.text-dark:focus {
 }
 
 body {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .navbar {
@@ -10960,26 +10960,34 @@ body {
 }
 
 .u-Above1 > * {
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .u-Above2 > * {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .u-Above3 > * {
+  margin-top: 40px;
+}
+
+.u-Above4 > * {
   margin-top: 80px;
 }
 
 .u-Below1 > * {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 }
 
 .u-Below2 > * {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .u-Below3 > * {
+  margin-bottom: 40px;
+}
+
+.u-Below4 > * {
   margin-bottom: 80px;
 }
 
@@ -10987,13 +10995,13 @@ body {
   overflow: hidden;
 }
 
-.c-PostList .a-Link {
+.c-PostList .ep-Link {
   position: relative;
   text-align: center;
   display: inline-block;
 }
 
-.c-PostList .a-Link:after {
+.c-PostList .ep-Link:after {
   content: "";
   display: inline-block;
   background: #3490dc;
@@ -11005,21 +11013,42 @@ body {
   height: 1px;
   width: 100%;
   transform: scaleX(0);
-  transition-property: transform;
+  transition-property: transform opacity;
   transition-duration: 0.2s;
+  opacity: 0;
 }
 
-.c-PostList .a-Link:hover {
+.c-PostList .ep-Link:hover {
   text-decoration: none;
 }
 
-.c-PostList .a-Link:hover:after {
+.c-PostList .ep-Link:hover:after {
   transform: scaleX(1);
-  transition-property: transform;
+  transition-property: transform opacity;
   transition-duration: 0.2s;
+  opacity: 1;
+}
+
+.c-PostList .a-Title {
+  height: 60px;
+}
+
+.c-PostList .a-Title > * {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .c-PostList .a-Txt {
+  font-size: 0.7em;
   height: 60px;
+}
+
+.c-PostList .a-Txt > * {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 

@@ -24,9 +24,11 @@
                         <div class="col-md-4">
                             <div class="card p-0 mt-4">
                                 <div class="c-PostList">
-                                    <p class="card-header"><a class="a-Link" href="#">{{$post->subject}}</a></p>
-                                    <div class="card-body">
-                                        <p class="card-text a-Txt">{{$post->detail}}</p>
+                                    <div class="card-header a-Title"><a class="ep-Link" href="#">{{$post->subject}}</a></div>
+                                    <div class="card-body u-Above2">
+                                        <div class="a-Txt mt-0">
+                                            <p class="card-text">{{$post->detail}}</p>
+                                        </div>
 
                                         <div class="u-btn-wrapper">
                                             <a href="#" class="btn btn-primary mr-3">編集</a>
