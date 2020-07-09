@@ -20,7 +20,7 @@
                     </div>
                     <div class="row">
                         
-                        @foreach ($postList as $post)
+                        @foreach ($data as $post)
                         <div class="col-md-4">
                             <div class="card p-0 mt-4">
                                 <div class="c-PostList">

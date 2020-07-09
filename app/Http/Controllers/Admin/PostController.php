@@ -9,6 +9,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use App\Responder\InterfaceResponder;
+use App\Responder\Admin\PostResponder;
 
 class PostController extends Controller
 {
@@ -18,7 +19,7 @@ class PostController extends Controller
     public function __construct(Post $post, InterfaceResponder $postResponder)
     {
         $this->post = $post;
-        // $this->postResponder = $postResponder;
+        $this->postResponder = $postResponder;
     }
     /**
      * Display a listing of the resource.
@@ -28,7 +29,8 @@ class PostController extends Controller
     public function index()
     {
         $postList = Post::where("deleted_at", null)->get();
-        return view('admin.post.index')->with('postList', $postList);
+        $response = $this->postResponder->getResponse('admin.post.index', $postList);
+        return $response;
     }
 
     public function myIndex()

@@ -1,11 +1,10 @@
-<?
-
-
-namespace App\Responder;
+<?php
+namespace App\Responder\Admin;
 
 use Illuminate\Http\Response;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\Auth as UserModel;
+use  App\Responder\InterfaceResponder;
 
 class PostResponder implements InterfaceResponder {
 
@@ -13,16 +12,17 @@ class PostResponder implements InterfaceResponder {
     protected $view;
     protected $data;
 
-    public function __construct(Response $response, ViewFactory $veiw, $data = null) {
+    public function __construct(Response $response, ViewFactory $veiw) {
         $this->response = $response;
         $this->view =  $veiw;
-        $this->data = $data;
     }
 
-    public function __invoke() {
+    public function getResponse(string $path, $data = null) {
 
         $this->response->setStatusCode(Response::HTTP_OK);
-
+        $this->response->setContent(
+            $this->view->make($path, compact('data'))
+        );
         return $this->response;
 
     }

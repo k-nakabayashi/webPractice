@@ -1,7 +1,7 @@
-<?
+<?php
 namespace App\Responder;
 
 interface InterfaceResponder {
 
-    public function __invoke();
+    public function getResponse(string $path, $data = null);
 }
