@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Responder\InterfaceResponder;
+use  App\Responder\PostResponder;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
+        $this->app->singleton(InterfaceResponder::class, function ($app) {
+
+            return $obj;
+        });
+
     }
 
     /**

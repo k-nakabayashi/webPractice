@@ -8,15 +8,17 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
+use App\Responder\InterfaceResponder;
 
 class PostController extends Controller
-{   
+{
     use AdminGuardBroker;
     private $post;
-
-    public function __construct(Post $post)
+    private $postResponder;
+    public function __construct(Post $post, InterfaceResponder $postResponder)
     {
         $this->post = $post;
+        // $this->postResponder = $postResponder;
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +27,6 @@ class PostController extends Controller
      */
     public function index()
     {
-
         $postList = Post::where("deleted_at", null)->get();
         return view('admin.post.index')->with('postList', $postList);
     }
@@ -35,24 +36,23 @@ class PostController extends Controller
         $admin = Auth::user();
         $postList = $admin->posts()->where(["deleted_at"=>null])->get();
         return view('admin.post.index')->with('postList', $postList);
-        
+
     }
 
     public function confirm(PostRequest $request)
     {
-        
+
         $request->flash();
         return view('admin.post.create.confirm');
-        // return view('admin.post.create.confirm')->withInput();
     }
 
     public function back(Request $request)
     {
 
         $request->flash();
-        return redirect()->route('admin.posts.create');  
+        return redirect()->route('admin.posts.create');
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -68,7 +68,7 @@ class PostController extends Controller
         $id = Auth::id();
         $data['admin_id'] = $id;
         $result = $this->post->create($data);
-        
+
         return redirect()->route('admin.posts.index');
     }
 
